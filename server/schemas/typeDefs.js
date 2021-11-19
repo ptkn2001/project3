@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Date
+
   type User {
     _id: ID
     userName: String
@@ -16,8 +18,9 @@ const typeDefs = gql`
   type Expense {
     _id: ID
     description: String
-    amount: Number
-    date: String
+    amount: String
+    date: Date
+    category: Category
   }
 
   type Query {
@@ -38,17 +41,19 @@ const typeDefs = gql`
     ): User
     addExpense(
       description: String
-      amount: Number!
-      date: String!
-      category: Category!
-    )
-    
-    
+      amount: String!
+      category: ID!
+    ): Expense
+    updateExpense(
+      expenseId: ID!
+      description: String
+      amount: String!
+      category: ID!
+      ): Expense
+    removeExpense(
+      expenseId: ID!
+      ): Expense
   }
 `;
 
 module.exports = typeDefs;
-
-
-// updateExpense(expenseId: ID!, description: String, amount: Number!, date: String!, category: Category!): Expense
-// removeExpense(expenseId: ID!): Expense
