@@ -12,4 +12,4 @@ const Travel = () => {
   );
 };
 
-export default Matchup;
+export default Travel;
