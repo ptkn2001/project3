@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Category } = require('../models');
+const { User, Category, Expense } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -13,6 +13,9 @@ const resolvers = {
     categories: async () => {
       return Category.find();
     },
+    expenses: async () => {
+      return Expense.find().populate('Category');
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {

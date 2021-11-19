@@ -13,10 +13,18 @@ const typeDefs = gql`
     name: String
   }
 
+  type Expense {
+    _id: ID
+    description: String
+    amount: Number
+    date: String
+  }
+
   type Query {
     user(userName: String!): User
     users: [User]
     categories: [Category]
+    expenses: [Expense]
   }
 
   type Mutation {
@@ -28,6 +36,12 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): User
+    addExpense(
+      description: String
+      amount: Number!
+      date: String!
+      category: Category!
+    )
   }
 `;
 
