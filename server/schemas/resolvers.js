@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Category, Expense } = require('../models');
-const { signToken } = require('../utils/auth');
+// const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -26,6 +26,26 @@ const resolvers = {
       const category = await Category.create(args);
       return category;
     },
+    addExpense: async (parent, args) => {
+      const expense = await Expense.create(args);
+      return expense;
+    },
+    // removeExpense: async (parent, {expenseId}) => {
+    //   const expense = await Expense.findOneAndDelete({_id: expenseId})
+    //   return expense;
+    // },
+    // updateExpense: async (parent, {expenseId, description, amount, date, category}) => {
+    //   const expense = await Expense.findOneAndUpdate({_id: expenseId},
+    //     {
+    //       description: description,
+    //       amount: amount,
+    //       date: date,
+    //       category: category,
+    //     },
+    //     { new: true }
+    //     );
+    //     return expense;
+    // }
   },
 };
 

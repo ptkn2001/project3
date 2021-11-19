@@ -16,7 +16,7 @@ const expenseSchema = new Schema({
       default: Date.now
     },
     category: {
-        type: Schema.Types.ObjectId,
+        
         ref: 'Category'
     }
 });

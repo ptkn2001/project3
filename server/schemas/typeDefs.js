@@ -42,7 +42,13 @@ const typeDefs = gql`
       date: String!
       category: Category!
     )
+    
+    
   }
 `;
 
 module.exports = typeDefs;
+
+
+// updateExpense(expenseId: ID!, description: String, amount: Number!, date: String!, category: Category!): Expense
+// removeExpense(expenseId: ID!): Expense
