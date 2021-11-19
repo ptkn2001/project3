@@ -8,12 +8,21 @@ const typeDefs = gql`
     password: String
   }
 
+  type Category {
+    _id: ID
+    name: String
+  }
+
   type Query {
-    user(username: String!): User
+    user(userName: String!): User
     users: [User]
+    categories: [Category]
   }
 
   type Mutation {
+    addCategory(
+      name: String!
+    ): Category
     addUser(
       userName: String!
       email: String!
