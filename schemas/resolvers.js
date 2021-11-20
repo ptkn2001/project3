@@ -34,8 +34,8 @@ const resolvers = {
     expenses: async () => {
       return Expense.find().populate('Category');
     },
-    monthlyBudget: async (parent, {monthlyBudgetId}) => {
-      return MonthlyBudget.findOne({monthlyBudgetId});
+    monthlyBudget: async (parent, { monthlyBudgetId }) => {
+      return MonthlyBudget.findOne({ monthlyBudgetId });
     },
     monthlyBudgets: async () => {
       return MonthlyBudget.find().populate('Category');
@@ -54,22 +54,42 @@ const resolvers = {
       const expense = await Expense.create(args);
       return expense;
     },
-    removeExpense: async (parent, {expenseId}) => {
-      const expense = await Expense.findOneAndDelete({_id: expenseId})
+    removeExpense: async (parent, { expenseId }) => {
+      const expense = await Expense.findOneAndDelete({ _id: expenseId })
       return expense;
     },
-    updateExpense: async (parent, {expenseId, description, amount, category}) => {
-      const expense = await Expense.findOneAndUpdate({_id: expenseId},
+    updateExpense: async (parent, { expenseId, description, amount, category }) => {
+      const expense = await Expense.findOneAndUpdate({ _id: expenseId },
         {
           description: description,
           amount: amount,
           category: category,
         },
         { new: true }
-        );
-        return expense;
+      );
+      return expense;
     },
-  },
+    addMonthlyBudget: async (parent, args) => {
+      const monthlyBudget = await MonthlyBudget.create(args);
+      return monthlyBudget;
+    },
+    removeMonthlyBudget: async (parent, args) => {
+      const monthlyBudget = await MonthlyBudget.findOneAndDelete({ _id: monthlyBudgetId })
+      return monthlyBudget;
+    },
+    updateMonthlyBudget: async (parent, { monthlyBudgetId, description, amount, category }) => {
+      const monthlyBudget = await MonthlyBudget.
+        findOneAndUpdate({ _id: monthlyBudgetId },
+          {
+            description: description,
+            amount: amount,
+            category: category,
+          },
+          { new: true }
+        );
+      return monthlyBudget;
+    },
+  }
 };
 
 module.exports = resolvers;
