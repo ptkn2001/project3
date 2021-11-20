@@ -1,5 +1,6 @@
-const { User, Category, Expense } = require('../models');
+const { User, Category, Expense, MonthlyBudget } = require('../models');
 const { GraphQLScalarType, Kind } = require('graphql');
+
 
 const dateScalar = new GraphQLScalarType({
   name: 'Date',
@@ -32,6 +33,12 @@ const resolvers = {
     },
     expenses: async () => {
       return Expense.find().populate('Category');
+    },
+    monthlyBudget: async (parent, {monthlyBudgetId}) => {
+      return MonthlyBudget.findOne({monthlyBudgetId});
+    },
+    monthlyBudgets: async () => {
+      return MonthlyBudget.find().populate('Category');
     }
   },
   Mutation: {
@@ -61,7 +68,7 @@ const resolvers = {
         { new: true }
         );
         return expense;
-    }
+    },
   },
 };
 

@@ -13,9 +13,14 @@ const monthlyBudgetSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category'
+  },
+  user:{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 
-const Expense = mongoose.model('MonthlyBudget', monthlyBudgetSchema);
+const MonthlyBudget = mongoose.model('MonthlyBudget', monthlyBudgetSchema);
 
 module.exports = MonthlyBudget;
