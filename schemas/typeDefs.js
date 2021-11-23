@@ -60,7 +60,7 @@ const typeDefs = gql`
       user: ID!
     ): Expense
 
-    updateCategoty(
+    updateCategory(
       categoryId: ID!
       name: String!
     ): Category
