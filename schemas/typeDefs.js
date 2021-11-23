@@ -59,6 +59,26 @@ const typeDefs = gql`
       category: ID!
       user: ID!
     ): Expense
+
+    updateCategoty(
+      categoryId: ID!
+      name: String!
+    ): Category
+
+    removeCategory(
+      categoryId:ID!
+    ): Category
+
+    updateUser(
+      userId: ID!
+      username: String!
+      password : String!
+    ): User
+
+    removeUser(
+      userId :ID!
+    ): User
+
     updateExpense(
       expenseId: ID!
       description: String
@@ -83,7 +103,11 @@ const typeDefs = gql`
     removeMonthlyBudget(
       monthlyBudgetId: ID!
      ): MonthlyBudget
+
+
   }
 `;
 
 module.exports = typeDefs;
+
+//**** */ Need to add update and remove Expense when we update the category
