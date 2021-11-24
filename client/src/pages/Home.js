@@ -1,16 +1,14 @@
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import React, { useState } from 'react';
 
-
+// To Do add signup and Extra services the same as travel and weather, ,...
 const Home = () => {
-
-
-  return (
-
-      <div>
-        <h1>Welcome to EMS</h1>
-      </div>
-  );
-};
-
-export default Home;
+    return (
+        <div>
+            
+            <div><h1>Sign up</h1></div>
+            <div><p>Extra</p></div>
+        </div>
+    );
+  };
+  
+  export default Home;
