@@ -51,11 +51,6 @@ const resolvers = {
       return category;
     },
 
-    removeCategory: async (parent, { categoryId }) => {
-      const category = await Category.findOneAndDelete({ _id: categoryId })
-      return category;
-    },
-
     updateCategory: async (parent, { categoryId, name }) => {
       const category = await Category.findOneAndUpdate({ _id: categoryId },
         {
@@ -72,11 +67,12 @@ const resolvers = {
       return user;
     },
 
-    updateUser: async (parent, { userId, username, password }) => {
+    updateUser: async (parent, { userId, username, password, email }) => {
       const user = await User.findOneAndUpdate({ _id: userId },
         {
           username: username,
           password : password,
+          email : email
         },
         { new: true }
       );

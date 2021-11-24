@@ -65,12 +65,9 @@ const typeDefs = gql`
       name: String!
     ): Category
 
-    removeCategory(
-      categoryId:ID!
-    ): Category
-
     updateUser(
       userId: ID!
+      email: String!
       username: String!
       password : String!
     ): User
