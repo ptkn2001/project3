@@ -4,6 +4,8 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
 import Travel from './pages/Travel';
 import NotFound from './pages/NotFound';
+import Reports from './pages/Reports';
+import Products from './pages/Products';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -22,6 +24,8 @@ function App() {
             <Route exact path="/travel">
               <Travel />
             </Route>
+            <Route path='/reports' component={Reports} />
+          <Route path='/products' component={Products} />
             <Route>
               <NotFound />
             </Route>
