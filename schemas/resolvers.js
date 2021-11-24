@@ -50,6 +50,35 @@ const resolvers = {
       const category = await Category.create(args);
       return category;
     },
+
+    updateCategory: async (parent, { categoryId, name }) => {
+      const category = await Category.findOneAndUpdate({ _id: categoryId },
+        {
+          name: name,
+        },
+        { new: true }
+      );
+      return category;
+    },
+
+    
+    removeUser: async (parent, { userId }) => {
+      const user = await User.findOneAndDelete({ _id: userId })
+      return user;
+    },
+
+    updateUser: async (parent, { userId, username, password, email }) => {
+      const user = await User.findOneAndUpdate({ _id: userId },
+        {
+          username: username,
+          password : password,
+          email : email
+        },
+        { new: true }
+      );
+      return user;
+    },
+
     addExpense: async (parent, args) => {
       const expense = await Expense.create(args);
       return expense;
