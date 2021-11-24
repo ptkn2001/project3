@@ -8,7 +8,7 @@ function App() {
    <div>
      <div><Header/></div>
      <div>
-        <div><Navbar/></div>
+        <div><Navbar loggedIn={false}/></div>
         <div><Main/></div>
      </div>
    </div>
