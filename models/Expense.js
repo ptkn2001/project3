@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const { Schema } = mongoose;
 
@@ -13,7 +14,8 @@ const expenseSchema = new Schema({
     date: {
       type: Date,
       required: true,
-      default: Date.now
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp)
     },
     category: {  
       type: Schema.Types.ObjectId,
