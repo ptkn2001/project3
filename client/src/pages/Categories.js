@@ -1,10 +1,14 @@
 import React from 'react';
 
-//To do adding Budget Categories Amount => find Total budget monthly / Year
-function Categories() {
+function Categories(props) {
+
   return (
     <div>
       <h1>Categories</h1>
+      <ul>
+        {props.categories.map((category) => <li key={category._id}> {category.name} </li>
+        )}
+      </ul>
     </div>
   );
 }

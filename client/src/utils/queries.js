@@ -9,3 +9,11 @@ export const QUERY_USER = gql`
     }
   }
 `;
+export const QUERY_CATEGORY = gql`
+  query categories {
+    categories {
+     _id
+     name
+     }
+  }
+`;

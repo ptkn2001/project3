@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { QUERY_CATEGORY } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import Signup from '../pages/Signup';
@@ -10,6 +12,8 @@ import Report from '../pages/Reports';
 
 
 const Main = (props) => {
+  const { loading, data } = useQuery(QUERY_CATEGORY);
+  const categories = data?.categories || [];
   switch (props.activePage) {
     case "Dashboard":
       return (
@@ -23,7 +27,12 @@ const Main = (props) => {
       break;
     case "Category":
       return (
-        <div><Category /></div>
+        <div>
+          {loading ? (
+            <div>Loading...</div>
+          ) : (<Category categories={categories} />
+          )}
+        </div>
       );
       break;
 
@@ -32,12 +41,12 @@ const Main = (props) => {
         <div><Expense /></div>
       );
       break;
-      case "Report":
-        return (
-                <div><Report/></div>
-        );
-        break;
-       case "Login":
+    case "Report":
+      return (
+        <div><Report /></div>
+      );
+      break;
+    case "Login":
       return (
         <div><Login /></div>
       );
