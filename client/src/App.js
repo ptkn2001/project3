@@ -1,17 +1,10 @@
-import React from 'react';
-import { 
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
- } from '@apollo/client';
-
+import React, { useState } from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import Main from './components/Main';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
-
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -36,13 +29,19 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [activePage, setActivePage] = useState('Login');
+
+  const handleActivePage = (activePage) => {
+    setActivePage(activePage);
+  };
+
   return (
     <ApolloProvider client={client}>
     <div>
       <div><Header/></div>
       <div>
-          <div><Navbar loggedIn={false}/></div>
-          <div><Main/></div>
+          <div><Navbar loggedIn={false} changeActivePage={handleActivePage} /></div>
+          <div><Main activePage={activePage}/></div>
       </div>
     </div>
     </ApolloProvider>

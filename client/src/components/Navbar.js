@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import './Navbar.css';
 
 
 const Navbar = (props) => {
+
+  const handleClick = (event) => {
+    const { innerText } = event.target;
+
+    props.changeActivePage(innerText);
+
+  };
 
     return (
         <div>
@@ -17,9 +25,11 @@ const Navbar = (props) => {
                     </ul>
                 ) : (
                         // If we are logged out, render this:
-                        <div><ul>
-                            <li>Home</li>
-                            <li>Extra</li>
+                        <div>
+                          <ul>
+                            <li className='navItem' onClick={handleClick}>Login</li>
+                            <li className='navItem' onClick={handleClick}>Signup</li>
+                            <li className='navItem' onClick={handleClick}>Extra</li>
                           </ul>
                         </div>
                       )
