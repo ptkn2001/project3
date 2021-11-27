@@ -45,9 +45,9 @@ function App() {
     <ApolloProvider client={client}>
       <div>
         <div><Header /></div>
-        <div>
-          <div><Navbar loggedIn={loginStatus} changeActivePage={handleActivePage} loginStatus={handleLoginStatus} /></div>
-          <div><Main activePage={activePage} loggedIn={loginStatus} loginStatus={handleLoginStatus}/></div>
+        <div className="flex-row">
+          <div className="col-2"><Navbar loggedIn={loginStatus} changeActivePage={handleActivePage} loginStatus={handleLoginStatus} /></div>
+          <div className="col-8"><Main activePage={activePage} loggedIn={loginStatus} loginStatus={handleLoginStatus}/></div>
         </div>
       </div>
     </ApolloProvider>
