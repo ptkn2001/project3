@@ -35,10 +35,10 @@ function App() {
     setActivePage(activePage);
   };
 
-  const [login, setLogin] = useState(true);
+  const [loginStatus, setLoginStatus] = useState(() => true);
 
-  const handleLogin = (loginStatus) => {
-    setLogin(loginStatus);
+  const handleLoginStatus = (status) => {
+    setLoginStatus(status);
   };
 
   return (
@@ -46,8 +46,8 @@ function App() {
       <div>
         <div><Header /></div>
         <div>
-          <div><Navbar loggedIn={login} changeActivePage={handleActivePage} loginStatus={handleLogin} /></div>
-          <div><Main activePage={activePage} /></div>
+          <div><Navbar loggedIn={loginStatus} changeActivePage={handleActivePage} loginStatus={handleLoginStatus} /></div>
+          <div><Main activePage={activePage} loggedIn={loginStatus} loginStatus={handleLoginStatus}/></div>
         </div>
       </div>
     </ApolloProvider>
