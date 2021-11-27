@@ -1,26 +1,6 @@
 const { User, Category, Expense, MonthlyBudget } = require('../models');
-const { GraphQLScalarType, Kind } = require('graphql');
-
-
-const dateScalar = new GraphQLScalarType({
-  name: 'Date',
-  description: 'Date custom scalar type',
-  serialize(value) {
-    return value.getTime(); // Convert outgoing Date to integer for JSON
-  },
-  parseValue(value) {
-    return new Date(value); // Convert incoming integer to Date
-  },
-  parseLiteral(ast) {
-    if (ast.kind === Kind.INT) {
-      return new Date(parseInt(ast.value, 10)); // Convert hard-coded AST string to integer and then to Date
-    }
-    return null; // Invalid hard-coded value (not an integer)
-  },
-});
 
 const resolvers = {
-  Date: dateScalar,
   Query: {
     users: async () => {
       return User.find();
@@ -61,6 +41,22 @@ const resolvers = {
       return category;
     },
 
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user with this email found!');
+      }
+
+      const correctPw = await User.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password!');
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
     
     removeUser: async (parent, { userId }) => {
       const user = await User.findOneAndDelete({ _id: userId })
