@@ -15,11 +15,6 @@ const Main = (props) => {
   const { loading, data } = useQuery(QUERY_CATEGORY);
   const categories = data?.categories || [];
 
-  const setStatus = (status) => {
-    console.log(`loginStatus = ${status}`);
-    props.loginStatus(status);
-  }
-
   switch (props.activePage) {
     case "Dashboard":
       return (
@@ -48,11 +43,11 @@ const Main = (props) => {
       );
     case "Login":
       return (
-        <div><Login setLoginStatus={setStatus} /></div>
+        <div><Login setLoginStatus={props.loginStatus} /></div>
       );
     case "Signup":
       return (
-        <div><Signup setLoginStatus={setStatus} /></div>
+        <div><Signup setLoginStatus={props.loginStatus} /></div>
       );
     case "Extra":
       return (
