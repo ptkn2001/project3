@@ -29,21 +29,27 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [activePage, setActivePage] = useState('Login');
+  const [activePage, setActivePage] = useState('Dashboard');
 
   const handleActivePage = (activePage) => {
     setActivePage(activePage);
   };
 
+  const [login, setLogin] = useState(true);
+
+  const handleLogin = (loginStatus) => {
+    setLogin(loginStatus);
+  };
+
   return (
     <ApolloProvider client={client}>
-    <div>
-      <div><Header/></div>
       <div>
-          <div><Navbar loggedIn={false} changeActivePage={handleActivePage} /></div>
-          <div><Main activePage={activePage}/></div>
+        <div><Header /></div>
+        <div>
+          <div><Navbar loggedIn={login} changeActivePage={handleActivePage} loginStatus={handleLogin} /></div>
+          <div><Main activePage={activePage} /></div>
+        </div>
       </div>
-    </div>
     </ApolloProvider>
   );
 }
