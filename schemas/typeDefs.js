@@ -37,7 +37,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    user(userName: String!): User
+    user(userName: String!): Auth
     users: [User]
     categories: [Category]
     expenses: [Expense]
@@ -54,7 +54,7 @@ const typeDefs = gql`
       userName: String!
       email: String!
       password: String!
-    ): User
+    ): Auth
     addExpense(
       description: String
       amount: String!
@@ -108,5 +108,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
-//**** */ Need to add update and remove Expense when we update the category

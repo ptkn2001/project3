@@ -10,7 +10,7 @@ const Navbar = (props) => {
 
   };
   const handleLogout = (event) => {
-// TO DO - local storage issue- clear
+    // TODO - local storage issue- clear
     props.loginStatus(false);
   };
 

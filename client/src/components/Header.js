@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Header = () => {
 
@@ -7,8 +7,7 @@ const Header = () => {
         <div>
             <div><h1>Header</h1></div>
             <div>
-                <p>{Date.now()}</p>
-                <p>Johngamil</p>
+                <p>John@gmail.com</p>
             </div>
         </div>
     );
