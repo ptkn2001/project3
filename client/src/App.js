@@ -35,7 +35,7 @@ function App() {
     setActivePage(activePage);
   };
 
-  const [loginStatus, setLoginStatus] = useState(() => true);
+  const [loginStatus, setLoginStatus] = useState(true);
 
   const handleLoginStatus = (status) => {
     setLoginStatus(status);
