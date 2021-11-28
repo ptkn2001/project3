@@ -14,13 +14,13 @@ const resolvers = {
       return Category.find();
     },
     expenses: async () => {
-      return Expense.find().populate('Category');
+      return Expense.find().populate('category');
     },
     monthlyBudget: async (parent, { monthlyBudgetId }) => {
       return MonthlyBudget.findOne({ monthlyBudgetId });
     },
     monthlyBudgets: async () => {
-      return MonthlyBudget.find().populate('Category');
+      return MonthlyBudget.find().populate('category');
     }
   },
   Mutation: {
