@@ -24,14 +24,9 @@ export const QUERY_EXPENSE = gql`
      _id
      description
      amount
-     
      category {
        _id
        name
-     }
-     user{
-       _id
-       userName
      }
     }
   }

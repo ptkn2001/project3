@@ -8,7 +8,6 @@ function Expenses(props) {
   const [expenseDescription, setExpenseDescription] = useState('');
   const [expenseAmount, setExpenseAmount] = useState('');  
   const [expenseCategory, setExpenseCategory] = useState('');  
-  const [expenseUser, setExpenseUser] = useState(''); 
   const [addExpense, { error }] = useMutation(ADD_EXPENSE);
   const [updateExpense, { errorUpdate }] = useMutation(UPDATE_EXPENSE);
 
@@ -29,12 +28,9 @@ function Expenses(props) {
         },
       });
 
-      console.log(data);
-
       setExpenseDescription('');
       setExpenseAmount('');
       setExpenseCategory('');
-      setExpenseUser('');
 
     } catch (err) {
       console.error(err);
@@ -50,7 +46,7 @@ function Expenses(props) {
         >
           <div className="col-12 col-lg-9">
             <input
-              placeholder="Add Category..."
+              placeholder="description"
               value={expenseDescription}
               className="form-input w-100"
               onChange={(event) => setExpenseDescription(event.target.value)}
@@ -59,7 +55,7 @@ function Expenses(props) {
 
           <div className="col-12 col-lg-9">
             <input
-              placeholder="Add Category..."
+              placeholder="amount"
               value={expenseAmount}
               className="form-input w-100"
               onChange={(event) => setExpenseAmount(event.target.value)}
@@ -68,18 +64,10 @@ function Expenses(props) {
 
           <div className="col-12 col-lg-9">
             <input
-              placeholder="Add Category..."
+              placeholder="category"
               value={expenseCategory}
               className="form-input w-100"
               onChange={(event) => setExpenseCategory(event.target.value)}
-            />
-          </div>
-          <div className="col-12 col-lg-9">
-            <input
-              placeholder="Add Category..."
-              value={expenseUser}
-              className="form-input w-100"
-              onChange={(event) => setExpenseUser(event.target.value)}
             />
           </div>
              
@@ -94,11 +82,12 @@ function Expenses(props) {
             </div>
           )}
         </form>
-      
         <div>
         <ul>
           {
-            props.expenses.map((expense) => (<li key={expense._id} id={expense._id}>{expense.description, expense.amount, expense.category.name} </li>))}
+            props.expenses.map((expense) => (<li key={expense._id} id={expense._id}>
+              Category: {expense.category.name}, Amount: {expense.amount}, Description: {expense.description} 
+              </li>))}
         </ul>
         </div>
     </div>

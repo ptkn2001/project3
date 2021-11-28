@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_CATEGORY, UPDATE_CATEGORY } from '../utils/mutations';
+import Modal from '../components/Modal';
+import './Categories.css';
 
 
 function Categories(props) {
@@ -47,7 +49,7 @@ function Categories(props) {
     }
   };
     
-  
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -77,10 +79,13 @@ function Categories(props) {
           )}
         </form>
       <ul>
-        {props.categories.map((category) => <li key={category._id} id={category._id}> {category.name}
-          <button className="" onClick={editHandler}> Edit </button>
+        {props.categories.map((category) => <li key={category._id} id={category._id}>
+        <label for={category.name}>{category.name}</label>
+        <button className="btn btn-info" onClick={() => setIsOpen(true)}>Edit</button>
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+          new category name
+        </Modal>
         </li>
-        
         )}
       </ul>
     </div>
