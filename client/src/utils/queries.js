@@ -24,12 +24,15 @@ export const QUERY_EXPENSE = gql`
      _id
      description
      amount
-     date
+     
      category {
        _id
        name
      }
+     user{
+       _id
+       userName
+     }
     }
   }
 `;
-
