@@ -33,4 +33,41 @@ export const ADD_CATEGORY = gql`
   }
 `;
 
+export const UPDATE_CATEGORY =gql`
+mutation updateCategory($categoryId: ID!, $name : String!) {
+  updateCategory( categoryId:$categoryId, name:$name) {
+    name
+  }
+}
+`;
 
+export const ADD_EXPENSE= gql`
+  mutation addExpense($description:String!, $amount:String!, $categoryId: ID!, $userId:ID!) {
+    addExpense(description:$description, amount:$amount, category:$categoryId, user:$userId) {
+        _id
+        description
+        amount
+        category
+        {
+          _id
+          name
+        }
+        user
+        {
+          _id
+        }
+    }
+  }
+`;
+
+
+export const UPDATE_EXPENSE =gql`
+mutation updateEXPENSE($expenseId: ID!, $description:String!, $amount:String!, $categoryId: ID!) {
+  updateCategory( _id:$expenseId, description:$description, amount:$amount, category:$categoryId, ) {
+    _id
+    description
+    amount
+    catedory
+  }
+}
+`;

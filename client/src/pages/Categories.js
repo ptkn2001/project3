@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_CATEGORY } from '../utils/mutations';
+import { ADD_CATEGORY, UPDATE_CATEGORY } from '../utils/mutations';
+
 
 function Categories(props) {
 
   const [category, setCategory] = useState('');
   const [addCategory, { error }] = useMutation(ADD_CATEGORY);
+  const [updateCategory, { errorUpdate }] = useMutation(UPDATE_CATEGORY);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -23,7 +25,29 @@ function Categories(props) {
       console.error(err);
     }
   };
+  const editHandler = async (event) => {
+    event.preventDefault();
+    
+    // console.log(event.target.parentElement.key) ;
+    console.log(event.target.parentElement.id);
+    
+    console.log(event);
+    try {
+      const data = await updateCategory({
+        variables: {
+                     "categoryId":event.target.parentElement.id ,
+                    "name": "test2"
+                   },
+      });
 
+      console.log(data);
+
+    } catch (err) {
+      // console.errorUpdate(err);
+    }
+  };
+    
+  
 
   return (
     <div>
@@ -53,7 +77,10 @@ function Categories(props) {
           )}
         </form>
       <ul>
-        {props.categories.map((category) => <li key={category._id}> {category.name} </li>
+        {props.categories.map((category) => <li key={category._id} id={category._id}> {category.name}
+          <button className="" onClick={editHandler}> Edit </button>
+        </li>
+        
         )}
       </ul>
     </div>
