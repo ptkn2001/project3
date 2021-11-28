@@ -17,7 +17,7 @@ export const QUERY_CATEGORY = gql`
      }
   }
 `;
-
+             
 export const QUERY_EXPENSE = gql`
   query expenses {
     expenses {
