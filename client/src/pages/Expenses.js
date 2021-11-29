@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
-
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_EXPENSE } from '../utils/queries';
 import { ADD_EXPENSE, REMOVE_EXPENSE} from '../utils/mutations';
 
-
 function Expenses(props) {
- 
   const [expenseDescription, setExpenseDescription] = useState('');
   const [expenseAmount, setExpenseAmount] = useState('');  
   const [expenseCategory, setExpenseCategory] = useState(''); 
   
-  const expenseData = useQuery(QUERY_EXPENSE);
-  const expenses = expenseData.data?.expenses || [];
   const [addExpense, { error }] = useMutation(ADD_EXPENSE);
   const [removeExpense, { error: removeError }] = useMutation(REMOVE_EXPENSE);
 
@@ -75,10 +69,9 @@ function Expenses(props) {
 
           <div className="col-12 col-lg-9">
             <select
-                onChange={(e) => setExpenseCategory(e.target.value)}
+                onChange={(event) => setExpenseCategory(event.target.value)}
                 value={expenseCategory}
               >
-               
                 <option>Choose Category...</option>
                 {props.categories.map((category) => (
                   <option key={category._id} id={category._id} value={category._id}>
@@ -99,6 +92,7 @@ function Expenses(props) {
             </div>
           )}
         </form>
+        
         <div className="mt-5">
         <table>
                 <tr>
@@ -107,7 +101,7 @@ function Expenses(props) {
                   <th>Description</th>
                 </tr>
           {
-            expenses.map((expense) => (
+            props.expenses.map((expense) => (
             <tr key={expense._id} id={expense._id}>
               <td>{expense.category.name}</td>
               <td>{expense.amount}</td>

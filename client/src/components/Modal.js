@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState }  from 'react'
 import ReactDom from 'react-dom'
 
 const MODAL_STYLES = {
@@ -22,18 +22,20 @@ const OVERLAY_STYLES = {
 }
 
 export default function Modal({ open, onClose, children, updateCategory }) {
-  if (!open) return null;
+  const [categoryName, setCategoryName] = useState(''); 
 
   const handleUpdate = () => {
-    const inputElement = document.getElementById('category_name');
-    console.log(inputElement);
+    updateCategory(categoryName);
+    onClose();
   }
+
+  if (!open) return null;
 
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
-        <input id="category_name" type="text" defaultValue={children} />
+        <input type="text" value={children} onChange={(event) => setCategoryName(event.target.value)} />
         <button onClick={handleUpdate}>OK</button>
         <button onClick={onClose}>Cancel</button>
       </div>

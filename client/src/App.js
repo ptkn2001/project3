@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import auth from './utils/auth';
-
 import Main from './components/Main';
 import Header from './components/Header';
 import Navbar from './components/Navbar';

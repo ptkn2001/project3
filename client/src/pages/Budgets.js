@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_BUDGET} from '../utils/queries';
 import { ADD_MONTHLY_BUDGET, REMOVE_MONTHLY_BUDGET} from '../utils/mutations';
 
-
 function Budgets(props) {
-
   const [budgetDescription, setBudgetDescription] = useState('');
   const [budgetAmount, setBudgetAmount] = useState('');  
   const [budgetCategory, setBudgetCategory] = useState(''); 
@@ -14,14 +11,10 @@ function Budgets(props) {
   const [addMonthlyBudget, { error }] = useMutation(ADD_MONTHLY_BUDGET);
   const [removeMonthlyBudget, { error: removeError }] = useMutation(REMOVE_MONTHLY_BUDGET);
 
-  const budgetData = useQuery(QUERY_BUDGET);
-  const budgets = budgetData.data?.monthlyBudgets || [];
-
   const deleteBudget = async (budgetId) => {
     await removeMonthlyBudget({
     variables: {"monthlyBudgetId": budgetId}
   })
-
   setUpdateCount(updateCount + 1);
 };
 
@@ -54,7 +47,6 @@ function Budgets(props) {
   };
 
   return (
-    
     <div>
       <h1>Monthly Budget</h1>
       <form
@@ -81,7 +73,7 @@ function Budgets(props) {
 
           <div className="col-12 col-lg-9">
             <select
-                onChange={(e) => setBudgetCategory(e.target.value)}
+                onChange={(event) => setBudgetCategory(event.target.value)}
                 value={budgetCategory}
               >
                 <option>Choose Category...</option>
@@ -104,6 +96,7 @@ function Budgets(props) {
             </div>
           )}
         </form>
+        
         <div className="mt-5">
         <table>
                 <tr>
@@ -114,7 +107,7 @@ function Budgets(props) {
                 </tr>
                 <tbody>
           {
-            budgets.map((budget) => (
+            props.budgets.map((budget) => (
             <tr key={budget._id} id={budget._id}>
               <td>{budget.category.name}</td>
               <td>{budget.amount}</td>

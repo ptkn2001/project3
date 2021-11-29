@@ -3,9 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_CATEGORY, UPDATE_CATEGORY } from '../utils/mutations';
 import Modal from '../components/Modal';
 
-
 function Categories(props) {
-
   const [category, setCategory] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState();
@@ -28,15 +26,13 @@ function Categories(props) {
     }
   };
 
-
-  const editCategory = async (categoryId) => {
+  const editCategory = async (event) => {
+    setSelectedId(event.target.parentElement.parentElement.id);
     setIsOpen(true);
-    setSelectedId(categoryId);
   };
 
-
   const executeUpdateCategory = async (newName) => {
-
+    debugger
     try {
       const data = await updateCategory({
         variables: {
@@ -45,13 +41,10 @@ function Categories(props) {
                    },
       });
 
-
     } catch (err) {
       console.error(err);
     }
   };
-    
-
 
   return (
     <div>
@@ -89,7 +82,7 @@ function Categories(props) {
             props.categories.map((category) => (
             <tr key={category._id} id={category._id}>
               <td>{category.name}</td>
-              <td> <button className="btn btn-info" onClick={(event) => editCategory(event.target.parentElement.id) }>Edit</button> </td>
+              <td> <button className="btn btn-info" onClick={editCategory}>Edit</button> </td>
             </tr>
             ))}       
         </table>
