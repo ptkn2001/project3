@@ -101,10 +101,11 @@ const resolvers = {
       return expense;
     },
     addMonthlyBudget: async (parent, args) => {
+      console.log('Im here');
       const monthlyBudget = await MonthlyBudget.create(args);
       return monthlyBudget;
     },
-    removeMonthlyBudget: async (parent, args) => {
+    removeMonthlyBudget: async (parent, {monthlyBudgetId}) => {
       const monthlyBudget = await MonthlyBudget.findOneAndDelete({ _id: monthlyBudgetId })
       return monthlyBudget;
     },
