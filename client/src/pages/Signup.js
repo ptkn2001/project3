@@ -31,7 +31,7 @@ const Signup = (props) => {
         variables: { ...formState },
       });
 
-      Auth.login(data.addUser.token);
+      Auth.login(data.login.token, data.login.user._id, data.login.user.userName);
     } catch (e) {
       console.error(e);
     }
@@ -45,7 +45,6 @@ const Signup = (props) => {
           <div className="card-body">
             {data ? (
               <h1>
-                {props.setLoginStatus(true)}
                 Success! 
               </h1>
             ) : (

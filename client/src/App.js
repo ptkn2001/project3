@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import auth from './utils/auth';
 
 import Main from './components/Main';
 import Header from './components/Header';
@@ -29,16 +30,12 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [activePage, setActivePage] = useState('Dashboard');
+  const startPage = auth.loggedIn()? "Dashboard" : "Login";
+
+  const [activePage, setActivePage] = useState(startPage);
 
   const handleActivePage = (activePage) => {
     setActivePage(activePage);
-  };
-
-  const [loginStatus, setLoginStatus] = useState(true);
-
-  const handleLoginStatus = (status) => {
-    setLoginStatus(status);
   };
 
   return (
@@ -46,8 +43,8 @@ function App() {
       <div>
         <div><Header /></div>
         <div className="flex-row">
-          <div className="col-2"><Navbar loggedIn={loginStatus} changeActivePage={handleActivePage} loginStatus={handleLoginStatus} /></div>
-          <div className="col-8"><Main activePage={activePage} loggedIn={loginStatus} loginStatus={handleLoginStatus}/></div>
+          <div className="col-2"><Navbar changeActivePage={handleActivePage} /></div>
+          <div className="col-8"><Main activePage={activePage} /></div>
         </div>
       </div>
     </ApolloProvider>

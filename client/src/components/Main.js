@@ -20,15 +20,12 @@ const Main = (props) => {
   const budgetData = useQuery(QUERY_BUDGET);
   const budgets = budgetData.data?.monthlyBudgets || [];
 
-  console.log("budgetData:", budgetData);
-
   switch (props.activePage) {
     case "Dashboard":
       return (
         <div><Dashboard /></div>
       );
     case "Budget":
-      console.log(categories);
       return (
         <div>
           {categoryData.loading || budgetData.loading ? (
@@ -57,11 +54,11 @@ const Main = (props) => {
       );
     case "Login":
       return (
-        <div><Login setLoginStatus={props.loginStatus} /></div>
+        <div><Login/></div>
       );
     case "Signup":
       return (
-        <div><Signup setLoginStatus={props.loginStatus} /></div>
+        <div><Signup/></div>
       );
     case "Extra":
       return (

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = () => {
-
+const userName = localStorage.getItem('user_name');
 
     return (
         <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
@@ -10,7 +10,7 @@ const Header = () => {
             Expense Management System
           </h1>
           <p style={{ margin: '0 1rem 0 0' }}>
-            John@gmail.com
+            {userName}
           </p>
         </div>
       </header>
