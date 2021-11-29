@@ -8,7 +8,6 @@ import Extra from '../pages/Extra';
 import Budget from '../pages/Budgets';
 import Category from '../pages/Categories';
 import Expense from '../pages/Expenses';
-import Report from '../pages/Reports';
 
 
 const Main = (props) => {
@@ -55,10 +54,6 @@ const Main = (props) => {
           ) : (<Expense expenses={expenses} categories={categories}/>
           )}
         </div>
-      );
-    case "Report":
-      return (
-        <div><Report /></div>
       );
     case "Login":
       return (
