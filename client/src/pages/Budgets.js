@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_MONTHLY_BUDGET, UPDATE_MONTHLY_BUDGET, REMOVE_MONTHLY_BUDGET} from '../utils/mutations';
+import './Budgets.css';
 
 
 function Budgets(props) {
@@ -101,15 +102,23 @@ function Budgets(props) {
             </div>
           )}
         </form>
-        <div>
-        <ul>
+        <div className="mt-5">
+        <table>
+                <tr>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Description</th>
+                </tr>
           {
-            props.budgets.map((budget) => (<li key={budget._id} id={budget._id}>
-             <div> Category: {budget.category.name}, Amount: {budget.amount}, Description: {budget.description} </div>
-             <button className="btn btn-info" onClick={(event) => deleteBudget(event.target.parentElement.id) }>Remove</button>
-              </li>))}
-                  
-        </ul>
+            props.budgets.map((budget) => (
+            <tr key={budget._id} id={budget._id}>
+              <td>{budget.category.name}</td>
+              <td>{budget.amount}</td>
+              <td>{budget.description}</td>
+              <td> <button className="btn btn-info" onClick={(event) => deleteBudget(event.target.parentElement.id) }>Remove</button> </td>
+            </tr>
+            ))}       
+        </table>
         </div>
     </div>
   );
