@@ -60,17 +60,14 @@ export const ADD_EXPENSE= gql`
   }
 `;
 
-
-export const UPDATE_EXPENSE =gql`
-mutation updateEXPENSE($expenseId: ID!, $description:String!, $amount:String!, $categoryId: ID!) {
-  updateCategory( _id:$expenseId, description:$description, amount:$amount, category:$categoryId, ) {
-    _id
-    description
-    amount
-    catedory
+export const REMOVE_EXPENSE = gql `
+  mutation removeExpense ($expenseId: ID!) {
+    removeExpense (expenseId: $expenseId) {
+      _id
+    }
   }
-}
 `;
+
 
 export const ADD_MONTHLY_BUDGET = gql `
   mutation addMonthlyBudget ($description: String, $amount: String!, $categoryId: ID!, $userId: ID!) {
@@ -81,17 +78,6 @@ export const ADD_MONTHLY_BUDGET = gql `
         _id
         name
       }
-    }
-  }
-`;
-
-export const UPDATE_MONTHLY_BUDGET = gql `
-  mutation updateMonthlyBudget ($monthlyBudgetId: ID!, $description: String, $amount: String!, $categoryId: ID! ) {
-    updateMonthlyBudget(monthlyBudgetId: $monthlyBudgetId, description:$description, amount: $amount, category: $categoryId ) {
-      description
-      amount
-      category
-      user
     }
   }
 `;

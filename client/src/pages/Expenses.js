@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_EXPENSE, UPDATE_EXPENSE} from '../utils/mutations';
+
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_EXPENSE } from '../utils/queries';
+import { ADD_EXPENSE, REMOVE_EXPENSE} from '../utils/mutations';
 
 
 function Expenses(props) {
  
   const [expenseDescription, setExpenseDescription] = useState('');
   const [expenseAmount, setExpenseAmount] = useState('');  
-  const [expenseCategory, setExpenseCategory] = useState('');  
+  const [expenseCategory, setExpenseCategory] = useState(''); 
+  
+  const expenseData = useQuery(QUERY_EXPENSE);
+  const expenses = expenseData.data?.expenses || [];
   const [addExpense, { error }] = useMutation(ADD_EXPENSE);
-  const [updateExpense, { errorUpdate }] = useMutation(UPDATE_EXPENSE);
+  const [removeExpense, { error: removeError }] = useMutation(REMOVE_EXPENSE);
+
+  const deleteExpense = async (expenseId) => {
+    await removeExpense({
+    variables: {"expenseId": expenseId}
+  })};
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -40,7 +50,7 @@ function Expenses(props) {
  
   return (
     <div>
-      <h1>Expense</h1>
+      <h1>Expenses</h1>
       <form
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}
@@ -89,13 +99,28 @@ function Expenses(props) {
             </div>
           )}
         </form>
-        <div>
-        <ul>
+        <div className="mt-5">
+        <table>
+                <tr>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Description</th>
+                </tr>
           {
-            props.expenses.map((expense) => (<li key={expense._id} id={expense._id}>
-              Category: {expense.category.name}, Amount: {expense.amount}, Description: {expense.description} 
-              </li>))}
-        </ul>
+            expenses.map((expense) => (
+            <tr key={expense._id} id={expense._id}>
+              <td>{expense.category.name}</td>
+              <td>{expense.amount}</td>
+              <td>{expense.description}</td>
+              <td> <button className="btn btn-info" onClick={(event) => deleteExpense(event.target.parentElement.parentElement.id) }>Remove</button> </td>
+            </tr>
+            ))}       
+        </table>
+        {removeError && (
+            <div className="col-12 my-3 bg-danger text-white p-3">
+              {removeError.message}
+            </div>
+             )}
         </div>
     </div>
   );

@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_MONTHLY_BUDGET, UPDATE_MONTHLY_BUDGET, REMOVE_MONTHLY_BUDGET} from '../utils/mutations';
-import './Budgets.css';
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_BUDGET} from '../utils/queries';
+import { ADD_MONTHLY_BUDGET, REMOVE_MONTHLY_BUDGET} from '../utils/mutations';
 
 
 function Budgets(props) {
 
   const [budgetDescription, setBudgetDescription] = useState('');
   const [budgetAmount, setBudgetAmount] = useState('');  
-  const [budgetCategory, setBudgetCategory] = useState('');  
+  const [budgetCategory, setBudgetCategory] = useState(''); 
+  const [updateCount, setUpdateCount] = useState(0);
+  
   const [addMonthlyBudget, { error }] = useMutation(ADD_MONTHLY_BUDGET);
-  const [updateMonthlyBudget, { errorUpdate }] = useMutation(UPDATE_MONTHLY_BUDGET);
-  const [removeMonthlyBudget, { errorRemove }] = useMutation(REMOVE_MONTHLY_BUDGET);
+  const [removeMonthlyBudget, { error: removeError }] = useMutation(REMOVE_MONTHLY_BUDGET);
+
+  const budgetData = useQuery(QUERY_BUDGET);
+  const budgets = budgetData.data?.monthlyBudgets || [];
 
   const deleteBudget = async (budgetId) => {
     await removeMonthlyBudget({
     variables: {"monthlyBudgetId": budgetId}
-  })};
+  })
+
+  setUpdateCount(updateCount + 1);
+};
 
 
   const handleFormSubmit = async (event) => {
@@ -39,17 +46,12 @@ function Budgets(props) {
       setBudgetDescription('');
       setBudgetAmount('');
       setBudgetCategory('');
-
-      console.log(data);
+      setUpdateCount(updateCount + 1);
 
     } catch (err) {
       console.error(err);
     }
   };
-
-  console.log(props.budgets);
-
-
 
   return (
     
@@ -108,17 +110,25 @@ function Budgets(props) {
                   <th>Category</th>
                   <th>Amount</th>
                   <th>Description</th>
+                  <th />
                 </tr>
+                <tbody>
           {
-            props.budgets.map((budget) => (
+            budgets.map((budget) => (
             <tr key={budget._id} id={budget._id}>
               <td>{budget.category.name}</td>
               <td>{budget.amount}</td>
               <td>{budget.description}</td>
-              <td> <button className="btn btn-info" onClick={(event) => deleteBudget(event.target.parentElement.id) }>Remove</button> </td>
+              <td> <button className="btn btn-info" onClick={(event) => deleteBudget(event.target.parentElement.parentElement.id) }>Remove</button> </td>
             </tr>
-            ))}       
+            ))}
+             </tbody>      
         </table>
+        {removeError && (
+            <div className="col-12 my-3 bg-danger text-white p-3">
+              {removeError.message}
+            </div>
+             )}
         </div>
     </div>
   );

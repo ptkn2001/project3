@@ -17,19 +17,25 @@ const OVERLAY_STYLES = {
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: '#FFF',
+  backgroundColor: 'rgba(0, 0, 0, .7)',
   zIndex: 1000
 }
 
-export default function Modal({ open, children, onClose }) {
-  if (!open) return null
+export default function Modal({ open, onClose, children, updateCategory }) {
+  if (!open) return null;
+
+  const handleUpdate = () => {
+    const inputElement = document.getElementById('category_name');
+    console.log(inputElement);
+  }
 
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
-        <input type="text" value={children} />
-        <button onClick={onClose}>Close Modal</button>
+        <input id="category_name" type="text" defaultValue={children} />
+        <button onClick={handleUpdate}>OK</button>
+        <button onClick={onClose}>Cancel</button>
       </div>
     </>,
     document.getElementById('portal')

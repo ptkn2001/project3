@@ -409,6 +409,10 @@ dl {
   margin-bottom: 1rem;
 }
 
+th {
+  border-bottom: solid;
+}
+
 ul.square {
   list-style-type: square;
   font-size: 1.3rem;
@@ -433,6 +437,12 @@ a {
 a:hover {
   color: #065b83;
   text-decoration: underline;
+}
+
+button:hover {
+  color: green;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 /* HEIGHT / WIDTH UTILS */
