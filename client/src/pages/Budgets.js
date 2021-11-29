@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_MONTHLY_BUDGET, UPDATE_MONTHLY_BUDGET, REMOVE_MONTHLY_BUDGET} from '../utils/mutations';
-import './Budgets.css';
+import { ADD_MONTHLY_BUDGET, REMOVE_MONTHLY_BUDGET} from '../utils/mutations';
 
 
 function Budgets(props) {
@@ -10,7 +9,6 @@ function Budgets(props) {
   const [budgetAmount, setBudgetAmount] = useState('');  
   const [budgetCategory, setBudgetCategory] = useState('');  
   const [addMonthlyBudget, { error }] = useMutation(ADD_MONTHLY_BUDGET);
-  const [updateMonthlyBudget, { errorUpdate }] = useMutation(UPDATE_MONTHLY_BUDGET);
   const [removeMonthlyBudget, { errorRemove }] = useMutation(REMOVE_MONTHLY_BUDGET);
 
   const deleteBudget = async (budgetId) => {

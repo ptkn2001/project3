@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_EXPENSE, UPDATE_EXPENSE} from '../utils/mutations';
+import { ADD_EXPENSE, REMOVE_EXPENSE} from '../utils/mutations';
 
 
 function Expenses(props) {
@@ -9,7 +9,13 @@ function Expenses(props) {
   const [expenseAmount, setExpenseAmount] = useState('');  
   const [expenseCategory, setExpenseCategory] = useState('');  
   const [addExpense, { error }] = useMutation(ADD_EXPENSE);
-  const [updateExpense, { errorUpdate }] = useMutation(UPDATE_EXPENSE);
+
+ const [removeExpense, { errorRemove }] = useMutation(REMOVE_EXPENSE);
+
+  const deleteExpense = async (ExpenseId) => {
+    await removeExpense({
+    variables: {"expenseId": ExpenseId}
+  })};
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -40,7 +46,7 @@ function Expenses(props) {
  
   return (
     <div>
-      <h1>Expense</h1>
+      <h1>Expenses</h1>
       <form
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}
@@ -89,13 +95,23 @@ function Expenses(props) {
             </div>
           )}
         </form>
-        <div>
-        <ul>
+        <div className="mt-5">
+        <table>
+                <tr>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Description</th>
+                </tr>
           {
-            props.expenses.map((expense) => (<li key={expense._id} id={expense._id}>
-              Category: {expense.category.name}, Amount: {expense.amount}, Description: {expense.description} 
-              </li>))}
-        </ul>
+            props.expenses.map((expense) => (
+            <tr key={expense._id} id={expense._id}>
+              <td>{expense.category.name}</td>
+              <td>{expense.amount}</td>
+              <td>{expense.description}</td>
+              <td> <button className="btn btn-info" onClick={(event) => deleteExpense(event.target.parentElement.id) }>Remove</button> </td>
+            </tr>
+            ))}       
+        </table>
         </div>
     </div>
   );

@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_CATEGORY, UPDATE_CATEGORY } from '../utils/mutations';
 import Modal from '../components/Modal';
-import './Categories.css';
 
 
 function Categories(props) {
 
   const [category, setCategory] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState();
+  
   const [addCategory, { error }] = useMutation(ADD_CATEGORY);
   const [updateCategory, { errorUpdate }] = useMutation(UPDATE_CATEGORY);
 
@@ -19,37 +21,37 @@ function Categories(props) {
         variables: { "name": category },
       });
 
-      console.log(data);
-
       setCategory('');
 
     } catch (err) {
       console.error(err);
     }
   };
-  const editHandler = async (event) => {
-    event.preventDefault();
-    
-    // console.log(event.target.parentElement.key) ;
-    console.log(event.target.parentElement.id);
-    
-    console.log(event);
+
+
+  const editCategory = async (categoryId) => {
+    setIsOpen(true);
+    setSelectedId(categoryId);
+  };
+
+
+  const executeUpdateCategory = async (newName) => {
+
     try {
       const data = await updateCategory({
         variables: {
-                     "categoryId":event.target.parentElement.id ,
-                    "name": "test2"
+                     "categoryId": selectedId ,
+                    "name": newName
                    },
       });
 
-      console.log(data);
 
     } catch (err) {
-      // console.errorUpdate(err);
+      console.error(err);
     }
   };
     
-  const [isOpen, setIsOpen] = useState(false);
+
 
   return (
     <div>
@@ -78,16 +80,21 @@ function Categories(props) {
             </div>
           )}
         </form>
-      <ul>
-        {props.categories.map((category) => <li key={category._id} id={category._id}>
-        <label for={category.name}>{category.name}</label>
-        <button className="btn btn-info" onClick={() => setIsOpen(true)}>Edit</button>
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-          new category name
-        </Modal>
-        </li>
-        )}
-      </ul>
+        <div className="mt-5">
+        <table>
+                <tr>
+                  <th>Category</th>
+                </tr>
+          {
+            props.categories.map((category) => (
+            <tr key={category._id} id={category._id}>
+              <td>{category.name}</td>
+              <td> <button className="btn btn-info" onClick={(event) => editCategory(event.target.parentElement.id) }>Edit</button> </td>
+            </tr>
+            ))}       
+        </table>
+        <Modal open={isOpen} onClose={() => setIsOpen(false)} updateCategory={executeUpdateCategory}/> 
+        </div>
     </div>
   );
 }
