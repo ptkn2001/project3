@@ -31,3 +31,18 @@ export const QUERY_EXPENSE = gql`
     }
   }
 `;
+
+
+export const QUERY_BUDGET = gql`
+  query monthlyBudgets {
+    monthlyBudgets {
+      _id
+      description
+      amount
+      category {
+        _id
+        name
+      }
+    }
+  }
+`;

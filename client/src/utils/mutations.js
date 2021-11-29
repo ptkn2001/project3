@@ -71,3 +71,35 @@ mutation updateEXPENSE($expenseId: ID!, $description:String!, $amount:String!, $
   }
 }
 `;
+
+export const ADD_MONTHLY_BUDGET = gql `
+  mutation addMonthlyBudget ($description: String, $amount: String!, $categoryId: ID!, $userId: ID!) {
+    addMonthlyBudget(description: $description, amount: $amount, category: $categoryId, user: $userId ) {
+      description
+      amount
+      category {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const UPDATE_MONTHLY_BUDGET = gql `
+  mutation updateMonthlyBudget ($monthlyBudgetId: ID!, $description: String, $amount: String!, $categoryId: ID! ) {
+    updateMonthlyBudget(monthlyBudgetId: $monthlyBudgetId, description:$description, amount: $amount, category: $categoryId ) {
+      description
+      amount
+      category
+      user
+    }
+  }
+`;
+
+export const REMOVE_MONTHLY_BUDGET = gql `
+  mutation removeMonthlyBudget ($monthlyBudgetId: ID!) {
+    removeMonthlyBudget (monthlyBudgetId: $monthlyBudgetId) {
+      _id
+    }
+  }
+`;
