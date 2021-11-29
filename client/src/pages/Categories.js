@@ -11,7 +11,7 @@ function Categories(props) {
   const [selectedId, setSelectedId] = useState();
   
   const [addCategory, { error }] = useMutation(ADD_CATEGORY);
-  const [updateCategory, { errorUpdate }] = useMutation(UPDATE_CATEGORY);
+  const [updateCategory, { error: updateError }] = useMutation(UPDATE_CATEGORY);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -93,6 +93,11 @@ function Categories(props) {
             </tr>
             ))}       
         </table>
+        {updateError && (
+            <div className="col-12 my-3 bg-danger text-white p-3">
+              {updateError.message}
+            </div>
+             )}
         <Modal open={isOpen} onClose={() => setIsOpen(false)} updateCategory={executeUpdateCategory}/> 
         </div>
     </div>

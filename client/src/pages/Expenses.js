@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_EXPENSE } from '../utils/queries';
 import { ADD_EXPENSE, REMOVE_EXPENSE} from '../utils/mutations';
 
 
@@ -7,14 +9,16 @@ function Expenses(props) {
  
   const [expenseDescription, setExpenseDescription] = useState('');
   const [expenseAmount, setExpenseAmount] = useState('');  
-  const [expenseCategory, setExpenseCategory] = useState('');  
+  const [expenseCategory, setExpenseCategory] = useState(''); 
+  
+  const expenseData = useQuery(QUERY_EXPENSE);
+  const expenses = expenseData.data?.expenses || [];
   const [addExpense, { error }] = useMutation(ADD_EXPENSE);
+  const [removeExpense, { error: removeError }] = useMutation(REMOVE_EXPENSE);
 
- const [removeExpense, { errorRemove }] = useMutation(REMOVE_EXPENSE);
-
-  const deleteExpense = async (ExpenseId) => {
+  const deleteExpense = async (expenseId) => {
     await removeExpense({
-    variables: {"expenseId": ExpenseId}
+    variables: {"expenseId": expenseId}
   })};
 
   const handleFormSubmit = async (event) => {
@@ -103,15 +107,20 @@ function Expenses(props) {
                   <th>Description</th>
                 </tr>
           {
-            props.expenses.map((expense) => (
+            expenses.map((expense) => (
             <tr key={expense._id} id={expense._id}>
               <td>{expense.category.name}</td>
               <td>{expense.amount}</td>
               <td>{expense.description}</td>
-              <td> <button className="btn btn-info" onClick={(event) => deleteExpense(event.target.parentElement.id) }>Remove</button> </td>
+              <td> <button className="btn btn-info" onClick={(event) => deleteExpense(event.target.parentElement.parentElement.id) }>Remove</button> </td>
             </tr>
             ))}       
         </table>
+        {removeError && (
+            <div className="col-12 my-3 bg-danger text-white p-3">
+              {removeError.message}
+            </div>
+             )}
         </div>
     </div>
   );
