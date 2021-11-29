@@ -4,7 +4,7 @@ import { ADD_EXPENSE, UPDATE_EXPENSE} from '../utils/mutations';
 
 
 function Expenses(props) {
-
+ 
   const [expenseDescription, setExpenseDescription] = useState('');
   const [expenseAmount, setExpenseAmount] = useState('');  
   const [expenseCategory, setExpenseCategory] = useState('');  
@@ -13,10 +13,11 @@ function Expenses(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const description = "test desription";
-    const amount ="20";
-    const category="619c62a072cba50b44e0b140";
+    const description = expenseDescription;
+    const amount = expenseAmount;
+    const category=expenseCategory;
     const user = "61a2c612d248b224c0050521";
+
     try {
       const data = await addExpense({
         variables: {
@@ -63,12 +64,18 @@ function Expenses(props) {
           </div>
 
           <div className="col-12 col-lg-9">
-            <input
-              placeholder="category"
-              value={expenseCategory}
-              className="form-input w-100"
-              onChange={(event) => setExpenseCategory(event.target.value)}
-            />
+            <select
+                onChange={(e) => setExpenseCategory(e.target.value)}
+                value={expenseCategory}
+              >
+               
+                <option>Choose Category...</option>
+                {props.categories.map((category) => (
+                  <option key={category._id} id={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+            </select>
           </div>
              
           <div className="col-12 col-lg-3">

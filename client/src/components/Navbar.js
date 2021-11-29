@@ -15,16 +15,16 @@ const Navbar = (props) => {
   };
 
     return (
-        <div>
+        <div className= "sidenav">
              {(props.loggedIn) ? (
                     <ul>
-                        <li className='navItem my-1' onClick={handleClick}>Dashboard</li>
-                        <li className='navItem my-1' onClick={handleClick}>Budget</li>
-                        <li className='navItem my-1' onClick={handleClick}>Category</li>
-                        <li className='navItem my-1' onClick={handleClick}>Expense</li>
-                        <li className='navItem my-1' onClick={handleClick}>Report</li>
-                        <li className='navItem my-1' onClick={handleClick}>Extra</li>
-                        <li className='navItem my-1' onClick={handleLogout}>Logout</li>
+                        <li className='navItem my-1' onClick={handleClick}>Dashboard</li><hr/>
+                        <li className='navItem my-1' onClick={handleClick}>Budget</li><hr/>
+                        <li className='navItem my-1' onClick={handleClick}>Category</li><hr/>
+                        <li className='navItem my-1' onClick={handleClick}>Expense</li><hr/>
+                        <li className='navItem my-1' onClick={handleClick}>Report</li><hr/>
+                        <li className='navItem my-1' onClick={handleClick}>Extra</li><hr/>
+                        <li className='navItem my-1' onClick={handleLogout}>Logout</li><hr/>
                     </ul>
                 ) : (
                         // If we are logged out, render this:
