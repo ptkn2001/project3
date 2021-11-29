@@ -15,7 +15,7 @@ const Navbar = (props) => {
   };
 
     return (
-        <div className= "sidenav">
+        <div>
              {(props.loggedIn) ? (
                     <ul>
                         <li className='navItem my-1' onClick={handleClick}>Dashboard</li><hr/>
