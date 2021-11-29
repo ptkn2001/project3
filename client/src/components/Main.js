@@ -41,7 +41,7 @@ const Main = (props) => {
         <div>
           {expenseData.loading ? (
             <div>Loading...</div>
-          ) : (<Expense expenses={expenses} />
+          ) : (<Expense expenses={expenses} categories={categories}/>
           )}
         </div>
       );
