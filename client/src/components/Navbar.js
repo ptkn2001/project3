@@ -1,5 +1,6 @@
 import React from 'react';
 import './Navbar.css';
+import auth from '../utils/auth';
 
 const Navbar = (props) => {
 
@@ -10,13 +11,14 @@ const Navbar = (props) => {
 
   };
   const handleLogout = (event) => {
-    // TODO - local storage issue- clear
-    props.loginStatus(false);
+    auth.logout();
   };
+
+  const isLogin = auth.loggedIn();
 
     return (
         <div>
-             {(props.loggedIn) ? (
+             {(isLogin) ? (
                     <ul>
                         <li className='navItem my-1' onClick={handleClick}>Dashboard</li><hr/>
                         <li className='navItem my-1' onClick={handleClick}>Category</li><hr/>

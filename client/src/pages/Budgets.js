@@ -24,7 +24,7 @@ function Budgets(props) {
     const description = budgetDescription;
     const amount = budgetAmount;
     const category= budgetCategory;
-    const user = "61a2c612d248b224c0050521";
+    const user = localStorage.getItem('user_id');
     try {
       const data = await addMonthlyBudget({
         variables: {

@@ -16,7 +16,7 @@ function Expenses(props) {
     const description = expenseDescription;
     const amount = expenseAmount;
     const category=expenseCategory;
-    const user = "61a2c612d248b224c0050521";
+    const user = localStorage.getItem('user_id');
 
     try {
       const data = await addExpense({
