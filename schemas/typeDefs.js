@@ -102,7 +102,7 @@ const typeDefs = gql`
     removeMonthlyBudget(
       monthlyBudgetId: ID!
      ): MonthlyBudget
-     login(email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
 
   }
 `;
