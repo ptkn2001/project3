@@ -109,8 +109,16 @@ samp {
 /**
  * Add the correct font size in all browsers.
  */
-small {
+.small {
   font-size: 80%;
+}
+
+.medium {
+  font-size: 150%;
+}
+
+.large {
+  font-size: 200%;
 }
 
 /**

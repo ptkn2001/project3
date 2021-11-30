@@ -1,6 +1,8 @@
-import React from 'react'
+import React , { useState }  from 'react'
 
 export const Report = () => {
+    const [amount, setAmount] = useState('');
+
     return (
         <div className="flex-row justify-center align-center">
             <div className="mr-1">
@@ -8,10 +10,9 @@ export const Report = () => {
             </div>
             <div className="mr-2">
                 <select>
-                    <option value='1'>Weekly</option>
-                    <option value='2'>Date Range</option>
-                    <option value='3'>Monthly</option>
-                    <option value='4'>Yearly</option>
+                    <option value='1'>This Month</option>
+                    <option value='2'>Year to Date</option>
+                    <option value='3'>Date Range</option>
                 </select>
             </div>
             <div className="mr-1">
@@ -21,11 +22,10 @@ export const Report = () => {
                 <select>
                     <option value='1'>Greater than</option>
                     <option value='2'>Less than</option>
-                    <option value='3'>Equal to</option>
                 </select>
             </div>
             <div className="mr-1" >
-                <input type='text' value='amount'></input>
+                <input className="p-2" type='text' placeholder="amount in whole" value={amount} onChange={(event) => setAmount(event.target.value)}></input>
             </div>
             <div className="mr-1">
                 <button className="btn btn-info" type='submit'>Submit</button>
