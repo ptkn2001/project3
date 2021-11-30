@@ -11,11 +11,13 @@ import Expense from '../pages/Expenses';
 
 
 const Main = (props) => {
+  const userId = localStorage.getItem('user_id');
+
   const categoryData = useQuery(QUERY_CATEGORY);
   const categories = categoryData.data?.categories || [];
-  const budgetData = useQuery(QUERY_BUDGET);
+  const budgetData = useQuery(QUERY_BUDGET, { variables: { "user": userId}});
   const budgets = budgetData.data?.monthlyBudgets || [];
-  const expenseData = useQuery(QUERY_EXPENSE);
+  const expenseData = useQuery(QUERY_EXPENSE, { variables: { "user": userId}});
   const expenses = expenseData.data?.expenses || [];
 
   switch (props.activePage) {
@@ -24,7 +26,7 @@ const Main = (props) => {
         <div>
           {categoryData.loading || budgetData.loading || expenseData.loading? (
             <div>Loading...</div>
-          ) : (<Dashboard categories={categories} budgets={budgets} />
+          ) : (<Dashboard expenses={expenses} budgets={budgets} />
           )}
         </div>
       );

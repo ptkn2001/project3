@@ -19,11 +19,12 @@ export const QUERY_CATEGORY = gql`
 `;
              
 export const QUERY_EXPENSE = gql`
-  query expenses {
-    expenses {
+  query expenses($user: ID!) {
+    expenses(user: $user) {
      _id
      description
      amount
+     date
      category {
        _id
        name
@@ -34,8 +35,8 @@ export const QUERY_EXPENSE = gql`
 
 
 export const QUERY_BUDGET = gql`
-  query monthlyBudgets {
-    monthlyBudgets {
+  query monthlyBudgets($user: ID!) {
+    monthlyBudgets(user: $user) {
       _id
       description
       amount
