@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
+import {QUERY_EXPENSE} from '../utils/queries';
 import { ADD_EXPENSE, REMOVE_EXPENSE} from '../utils/mutations';
 
 function Expenses(props) {
@@ -11,12 +12,16 @@ function Expenses(props) {
   const [removeExpense, { error: removeError }] = useMutation(REMOVE_EXPENSE);
 
   const deleteExpense = async (expenseId) => {
+    const userId = localStorage.getItem('user_id');
     await removeExpense({
-    variables: {"expenseId": expenseId}
+    variables: {"expenseId": expenseId},
+    refetchQueries: [{query: QUERY_EXPENSE, variables: { "user": userId} }],
   })};
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    const userId = localStorage.getItem('user_id');
     const description = expenseDescription;
     const amount = expenseAmount;
     const category=expenseCategory;
@@ -31,6 +36,7 @@ function Expenses(props) {
           "userId":user
 
         },
+        refetchQueries: [{query: QUERY_EXPENSE, variables: { "user": userId} }],
       });
 
       setExpenseDescription('');

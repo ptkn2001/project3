@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_CATEGORY, UPDATE_CATEGORY } from '../utils/mutations';
+import {QUERY_CATEGORY} from '../utils/queries';
 import Modal from '../components/Modal';
 
 function Categories(props) {
@@ -17,9 +18,12 @@ function Categories(props) {
     try {
       const data = await addCategory({
         variables: { "name": category },
+        refetchQueries: [{query: QUERY_CATEGORY }],
       });
 
       setCategory('');
+
+      // window.location.reload();
 
     } catch (err) {
       console.error(err);
@@ -32,13 +36,13 @@ function Categories(props) {
   };
 
   const executeUpdateCategory = async (newName) => {
-    debugger
     try {
       const data = await updateCategory({
         variables: {
                      "categoryId": selectedId ,
                     "name": newName
                    },
+                   refetchQueries: [{query: QUERY_CATEGORY }],    
       });
 
     } catch (err) {
