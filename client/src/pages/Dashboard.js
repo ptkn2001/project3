@@ -6,31 +6,33 @@ const Dashboard = () => {
   return (
 
       <div>
-        <div>
-          <p> Summary of what balance and Spent mean</p>
-          <div className="card">
+        <div className="flex-row justify-center">
+          <p>Summary of what balance and Spent mean</p>
+        </div>
+        <div className="flex-row justify-space-around">
 
-            <div>
-             {/* <FontAwesomeIcon icon="fa-solid fa-scale-balanced" /> */}
+          <div className="card">
               <p>need icon</p>
-              <div>
+              <div className="card-header">
                 <h3>Balance</h3>
+                </div>
+                <div className="card-body">
                 <p>needs data from monthly budget</p>
               </div>
-            </div>
           </div>
 
           <div className="card">
-            <div>
-              <p>need icon</p>
-              <div>
-                <h3>Spent</h3>
-                <p>calculate the monley has been used till today</p>
-              </div>
+            <p>need icon</p>
+            <div className="card-header">
+              <h3>Spent</h3>
+            </div>
+            <div className="card-body">
+              <p>monthly been spent till today</p>
             </div>
           </div>
+
         </div>
-        <div>
+
           <div>
             <Chart/>
           </div>
@@ -38,7 +40,6 @@ const Dashboard = () => {
           <div>
             <Report/>
           </div>
-        </div>
       </div>
   );
 };
