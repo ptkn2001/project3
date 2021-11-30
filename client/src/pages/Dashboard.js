@@ -24,7 +24,7 @@ const Dashboard = ({expenses, budgets}) => {
 
       <div>
         <div className="flex-row justify-center">
-          <h2>Balance and Spending Sumaries</h2>
+          <h2>Balance and Spending Summaries</h2>
         </div>
         <div className="flex-row justify-space-around">
 
@@ -64,7 +64,7 @@ const Dashboard = ({expenses, budgets}) => {
 
           <div>
           <div className="flex-row justify-center">
-            <h2>Report Sumaries</h2>
+            <h2>Report Summaries</h2>
           </div>
             <Report/>
           </div>
