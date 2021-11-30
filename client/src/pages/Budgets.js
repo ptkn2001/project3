@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
+import {QUERY_BUDGET, QUERY_EXPENSE} from '../utils/queries';
 import { ADD_MONTHLY_BUDGET, REMOVE_MONTHLY_BUDGET} from '../utils/mutations';
 
 function Budgets(props) {
@@ -12,8 +13,10 @@ function Budgets(props) {
   const [removeMonthlyBudget, { error: removeError }] = useMutation(REMOVE_MONTHLY_BUDGET);
 
   const deleteBudget = async (budgetId) => {
+    const userId = localStorage.getItem('user_id');
     await removeMonthlyBudget({
-    variables: {"monthlyBudgetId": budgetId}
+    variables: {"monthlyBudgetId": budgetId},
+    refetchQueries: [{query: QUERY_BUDGET, variables: { "user": userId} }],
   })
   setUpdateCount(updateCount + 1);
 };
@@ -21,6 +24,8 @@ function Budgets(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    const userId = localStorage.getItem('user_id');
     const description = budgetDescription;
     const amount = budgetAmount;
     const category= budgetCategory;
@@ -34,6 +39,7 @@ function Budgets(props) {
           "userId":user
 
         },
+        refetchQueries: [{query: QUERY_BUDGET, variables: { "user": userId} }],
       });
 
       setBudgetDescription('');
