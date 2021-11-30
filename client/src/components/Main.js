@@ -8,7 +8,7 @@ import Extra from '../pages/Extra';
 import Budget from '../pages/Budgets';
 import Category from '../pages/Categories';
 import Expense from '../pages/Expenses';
-import Report from '../components/Report';
+
 
 const Main = (props) => {
   const categoryData = useQuery(QUERY_CATEGORY);
