@@ -46,6 +46,10 @@ function Categories(props) {
     }
   };
 
+  const handleOnClose = () => {
+    setIsOpen(false);
+  }
+
   return (
     <div>
       <h1>Categories</h1>
@@ -91,7 +95,7 @@ function Categories(props) {
               {updateError.message}
             </div>
              )}
-        <Modal open={isOpen} onClose={() => setIsOpen(false)} updateCategory={executeUpdateCategory}/> 
+        <Modal open={isOpen} onClose={handleOnClose} updateCategory={executeUpdateCategory}/> 
         </div>
     </div>
   );
