@@ -99,6 +99,7 @@ function Expenses(props) {
                   <th>Category</th>
                   <th>Amount</th>
                   <th>Description</th>
+                  <th>Date</th>
                 </tr>
           {
             props.expenses.map((expense) => (
@@ -106,6 +107,7 @@ function Expenses(props) {
               <td>{expense.category.name}</td>
               <td>{expense.amount}</td>
               <td>{expense.description}</td>
+              <td>{expense.date}</td>
               <td> <button className="btn btn-info" onClick={(event) => deleteExpense(event.target.parentElement.parentElement.id) }>Remove</button> </td>
             </tr>
             ))}       

@@ -2,7 +2,21 @@ import React from 'react';
 import Chart from '../components/Chart';
 import Report from '../components/Report';
 
-const Dashboard = () => {
+const Dashboard = ({expenses, budgets}) => {
+
+  let expensed = 0;
+  let budgeted = 0;
+
+  if(budgets) {
+    budgeted =  budgets.reduce((n, {amount}) => n + parseInt(amount), 0);
+  }
+
+  if(expenses) {
+    expensed =  expenses.reduce((n, {amount}) => n + parseInt(amount), 0);
+  }
+
+  const balance = budgeted - expensed;
+  
   return (
 
       <div>
@@ -17,7 +31,8 @@ const Dashboard = () => {
                 <h3>Balance</h3>
                 </div>
                 <div className="card-body">
-                <p>needs data from monthly budget</p>
+                <p>Total Budget: ${budgeted}</p>
+                <p>Balance: ${balance}</p>
               </div>
           </div>
 
@@ -27,7 +42,7 @@ const Dashboard = () => {
               <h3>Spent</h3>
             </div>
             <div className="card-body">
-              <p>monthly been spent till today</p>
+              <p>Spending up to date: ${expensed}</p>
             </div>
           </div>
 

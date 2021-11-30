@@ -40,9 +40,9 @@ const typeDefs = gql`
     user(userName: String!): Auth
     users: [User]
     categories: [Category]
-    expenses: [Expense]
+    expenses(user: ID!): [Expense]
     monthlyBudget(_id: ID!): MonthlyBudget
-    monthlyBudgets: [MonthlyBudget]
+    monthlyBudgets(user: ID!): [MonthlyBudget]
     
   }
 

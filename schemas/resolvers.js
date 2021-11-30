@@ -7,20 +7,20 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username });
+    user: async (parent, { userName }) => {
+      return User.findOne({ userName });
     },
     categories: async () => {
       return Category.find();
     },
-    expenses: async () => {
-      return Expense.find().populate('category');
+    expenses: async (parent, args) => {
+      return Expense.find(args).populate('category');
     },
     monthlyBudget: async (parent, { monthlyBudgetId }) => {
       return MonthlyBudget.findOne({ monthlyBudgetId });
     },
-    monthlyBudgets: async () => {
-      return MonthlyBudget.find().populate('category');
+    monthlyBudgets: async (parent, args) => {
+      return MonthlyBudget.find(args).populate('category');
     }
   },
   Mutation: {
