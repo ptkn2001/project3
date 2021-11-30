@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from '../components/Chart';
+import Chart2 from '../components/Chart';
 import Report from '../components/Report';
 
 const Dashboard = ({expenses, budgets}) => {
@@ -49,7 +49,7 @@ const Dashboard = ({expenses, budgets}) => {
         </div>
 
           <div>
-            <Chart/>
+            <Chart2 expenses={expenses} />
           </div>
 
           <div>
