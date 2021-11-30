@@ -64,7 +64,7 @@ const Dashboard = ({expenses, budgets}) => {
 
           <div>
           <div className="flex-row justify-center">
-            <h2>Report Summaries</h2>
+            <h2>Expense Report</h2>
           </div>
             <Report/>
           </div>

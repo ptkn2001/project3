@@ -25,7 +25,6 @@ const Navbar = (props) => {
                         <li className='navItem my-1' onClick={handleLogout}>Logout</li><hr/>
                     </ul>
                 ) : (
-                        // If we are logged out, render this:
                         <div>
                           <ul>
                             <li className='navItem my-1' onClick={handleClick}>Login</li><hr/>
