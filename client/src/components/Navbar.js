@@ -6,16 +6,13 @@ const Navbar = (props) => {
 
   const handleClick = (event) => {
     const { innerText } = event.target;
-
     props.changeActivePage(innerText);
-
   };
   const handleLogout = (event) => {
     auth.logout();
   };
 
   const isLogin = auth.loggedIn();
-
     return (
         <div>
              {(isLogin) ? (
