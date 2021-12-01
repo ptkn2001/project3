@@ -99,7 +99,7 @@ function Expenses(props) {
           )}
         </form>
         
-        <div className="mt-5">
+        <div className="mt-5 ml-5">
         <table>
                 <tr>
                   <th><span className="mr-4">Category</span></th>
