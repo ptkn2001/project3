@@ -55,7 +55,7 @@ function Categories(props) {
   }
 
   return (
-    <div>
+    <div className="mt-4">
       <h1>Categories</h1>
       <form
           className="flex-row justify-center justify-space-between-md align-center"

@@ -1,5 +1,6 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 :root{
+  --backgroundColorHeader:#53c641;
   --background-colorbody:#e4f7d2;
   --navbar-color:#2A4F04;
   --sideBar-color:#f6f5f5;
@@ -8,8 +9,9 @@
   --white:white;
   --card-header:#2d3e50;
   --card-title:#d9e9e8;
-  --orange:#ff7f27;
-  --span2:#0666f7;
+  --c-orange:#ff7f27;
+  --c-blue:#0666f7;
+  --c-darkBlue:#2c4592;
 
 }
 /* NavBar only */
@@ -38,13 +40,17 @@ li.navItem:hover {
   margin-top: 15px;
   margin-bottom: 10px;
 }
-.span{
+.c-orange{
   font-weight: 600;
-  color:var(--orange);
+  color:var(--c-orange);
 }
-.span2{
+.c-blue{
   font-weight: 600;
-  color: var(--span2);
+  color: var(--c-blue);
+}
+.c-darkBlue{
+  font-weight: 600;
+  color: var(--c-darkBlue);
 }
 /* End Dashboard */
 
@@ -997,7 +1003,7 @@ button:hover {
 
 .bg-info {
 
-  background-color:#39D321 !important;
+  background-color:var(--backgroundColorHeader) !important;
   /* background-color: #1bbc9b !important; */
 }
 
@@ -1104,7 +1110,8 @@ button:hover {
 }
 
 .btn.btn-info {
-  background-color: #1bbc9b;
+  /* background-color: #1bbc9b; */
+  background-color: #336a8a;
   color: #ffffff;
 }
 
