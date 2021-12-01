@@ -55,19 +55,20 @@ const Dashboard = ({expenses, budgets}) => {
           </div>
         </div>
 
-        <div>
-          <div className="flex-row justify-center mt-3 mb-2 ">
-            <h2>Top 5 Expenses</h2>
-          </div>
-          <Chart2 expenses={expenses} />
-        </div>
-
+        <div className="flex-row justify-space-around">
           <div>
-          <div className="flex-row justify-center mt-3 mb-2 ">
-            <h2>Expense Report</h2>
+            <div className="flex-row justify-center">
+              <h2>Top 5 Expenses</h2>
+            </div>
+            <Chart2 expenses={expenses} />
           </div>
-            <Report/>
+          <div>
+            <div className="flex-row justify-center">
+              <h2>Expense Report</h2>
+            </div>
+            <Report expenses={expenses}/>
           </div>
+        </div>
       </div>
   );
 };
