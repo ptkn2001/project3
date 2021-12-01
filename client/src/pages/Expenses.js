@@ -49,7 +49,7 @@ function Expenses(props) {
   };
  
   return (
-    <div>
+    <div className="mt-4">
       <h1>Expenses</h1>
       <form
           className="flex-row justify-center justify-space-between-md align-center"
@@ -102,10 +102,10 @@ function Expenses(props) {
         <div className="mt-5">
         <table>
                 <tr>
-                  <th>Category</th>
-                  <th>Amount</th>
-                  <th>Description</th>
-                  <th>Date</th>
+                  <th><span className="mr-4">Category</span></th>
+                  <th><span className="mr-4">Amount</span></th>
+                  <th><span className="mr-4">Description</span></th>
+                  <th><span className="mr-4">Date</span></th>
                 </tr>
           {
             props.expenses.map((expense) => (
