@@ -81,7 +81,7 @@ function Categories(props) {
             </div>
           )}
         </form>
-        <div className="mt-5">
+        <div className="mt-5 ml-5">
         <table>
                 <tr>
                   <th>Category</th>

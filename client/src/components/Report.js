@@ -24,7 +24,7 @@ export const Report = ({expenses}) => {
         <div className="w-600">
         <div className="flex-col justify-center align-center">
             <div className="flex-row align-center">
-            <div className="mr-1">
+            <div className="mr-3">
                 <label>Reports:</label>
             </div>
             <div className="mr-2">
@@ -46,7 +46,7 @@ export const Report = ({expenses}) => {
             </div>
             </div>
             <div className="flex-row align-center">
-            <div className="mr-1">
+            <div className="mr-3">
                 <label>Amount:</label>
             </div>
             <div className="mr-2" >
