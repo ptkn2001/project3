@@ -23,7 +23,7 @@ const Dashboard = ({expenses, budgets}) => {
   return (
 
       <div>
-        <div className="flex-row justify-center">
+        <div className="flex-row justify-center dashboard-title">
           <h2>Balance and Spending Summaries</h2>
         </div>
         <div className="flex-row justify-space-around">
@@ -35,8 +35,8 @@ const Dashboard = ({expenses, budgets}) => {
                 <h3>Balance</h3>
                 </div>
                 <div className="card-body">
-                <p>Total Budget: ${budgeted}</p>
-                <p>Balance: ${balance}</p>
+                <p><span className="span">Total Budget: </span> ${budgeted}</p>
+                <p><span className="span2">Balance:</span> ${balance}</p>
               </div>
             </div>
           </div>
@@ -48,8 +48,8 @@ const Dashboard = ({expenses, budgets}) => {
               <h3>Spent</h3>
             </div>
             <div className="card-body">
-              <p>{Moment(Date.now()).format('MMM, YYYY')}</p>
-              <p>Spending to date: ${expensed}</p>
+              <p className="span">{Moment(Date.now()).format('MMM, YYYY')}</p>
+              <p><span className="span2">Spending to date: </span>${expensed}</p>
             </div>
             </div>
           </div>

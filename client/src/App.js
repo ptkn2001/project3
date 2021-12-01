@@ -42,7 +42,7 @@ function App() {
       <div>
         <div><Header /></div>
         <div className="flex-row">
-          <div className="col-2"><Navbar changeActivePage={handleActivePage} /></div>
+          <div className="col-2 sideBar"><Navbar changeActivePage={handleActivePage} /></div>
           <div className="col-8"><Main activePage={activePage} /></div>
         </div>
       </div>

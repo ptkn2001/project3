@@ -1,9 +1,0 @@
-ul {
-  list-style-type: none;
-}
-
-li.navItem:hover {
-  color: green;
-  cursor: pointer;
-  font-weight: bold;
-}

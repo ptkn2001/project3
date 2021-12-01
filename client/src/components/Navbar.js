@@ -1,5 +1,4 @@
 import React from 'react';
-import './Navbar.css';
 import auth from '../utils/auth';
 
 const Navbar = (props) => {
@@ -14,7 +13,7 @@ const Navbar = (props) => {
 
   const isLogin = auth.loggedIn();
     return (
-        <div>
+        <div >
              {(isLogin) ? (
                     <ul>
                         <li className='navItem my-1' onClick={handleClick}>Dashboard</li><hr/>

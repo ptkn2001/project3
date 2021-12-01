@@ -50,7 +50,7 @@ const Main = (props) => {
       );
     case "Expense":
       return (
-        <div>
+        <div >
           {categoryData.loading ? (
             <div>Loading...</div>
           ) : (<Expense categories={categories} expenses={expenses}/>
