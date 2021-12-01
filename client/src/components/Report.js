@@ -2,7 +2,7 @@ import React , { useState }  from 'react';
 import ReportHelper from '../utils/reporthelper';
 
 export const Report = ({expenses}) => {
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState('0');
     const [isGreaterThan, setIsGreaterThan] = useState(1);
     const [reportType, setReportType] = useState(1);
     const [reportData, setReportData] = useState([]);
@@ -50,7 +50,7 @@ export const Report = ({expenses}) => {
                 <label>Amount:</label>
             </div>
             <div className="mr-2" >
-                <input className="p-2" type='text' placeholder="amount in whole" value={amount} onChange={(event) => setAmount(event.target.value)}></input>
+                <input className="p-2" type='text' value={amount} onChange={(event) => setAmount(event.target.value)}></input>
             </div>
             <div className="mr-1">
                 <button className="btn btn-info" type='submit' onClick={handleOnClick}>Submit</button>
