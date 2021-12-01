@@ -1,4 +1,53 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+:root{
+  --background-colorbody:#e4f7d2;
+  --navbar-color:#2A4F04;
+  --sideBar-color:#f6f5f5;
+  --navBar-hover:#f3e4b4;
+  --green:green;
+  --white:white;
+  --card-header:#2d3e50;
+  --card-title:#d9e9e8;
+  --orange:#ff7f27;
+  --span2:#0666f7;
+
+}
+/* NavBar only */
+ul {
+  list-style-type: none;
+}
+li.navItem{
+  color: var(--navbar-color);
+  font-weight: bold;
+}
+li.navItem:hover {
+  color: var(--green);
+  background-color: var(--navBar-hover);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.sideBar{
+  background-color: var(--sideBar-color);
+}
+/* end of Navbar */
+
+
+/* Dashboard */
+.dashboard-title{
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.span{
+  font-weight: 600;
+  color:var(--orange);
+}
+.span2{
+  font-weight: 600;
+  color: var(--span2);
+}
+/* End Dashboard */
+
 /* Document
    ========================================================================== */
 /**
@@ -19,6 +68,7 @@ html {
  */
 body {
   margin: 0;
+  background-color: var(--background-colorbody);
 }
 
 /**
@@ -908,7 +958,8 @@ button:hover {
 }
 
 .text-info {
-  color: #1bbc9b !important;
+  /* color: #1bbc9b !important; */
+  color: #B8E986;
 }
 
 .text-danger {
@@ -945,7 +996,9 @@ button:hover {
 }
 
 .bg-info {
-  background-color: #1bbc9b !important;
+
+  background-color:#39D321 !important;
+  /* background-color: #1bbc9b !important; */
 }
 
 .bg-danger {
@@ -1107,12 +1160,13 @@ button:hover {
 .card {
   border: 1px solid #1a1a1a;
   margin-bottom: 1rem;
+  background-color: var(--white);
 }
 
 .card .card-header {
   padding: 0.375rem;
-  background-color: #2d3e50;
-  color: #d9e9e8;
+  background-color: var(--card-header);
+  color: var(--card-title);
 }
 
 .card .card-body {
