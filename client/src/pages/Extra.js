@@ -2,6 +2,11 @@ import React , { useState }  from 'react';
 import WeatherHelper from '../utils/weatherHelper';
 import UnderConstructionIcon from '../icons/site-under-construction.jpg';
 import CloudIcon from '../icons/cloudy.jpg';
+import ClearIcon from '../icons/sunny.jpg';
+import DefaultIcon from '../icons/default.jpg';
+import RainnyIcon from '../icons/default.jpg';
+import SnowIcon from '../icons/snowy.jpg';
+import WindyIcon from '../icons/windy.jpg';
 
 const Travel = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -16,14 +21,40 @@ const handleSearchOnClick = () => {
 
 }
 
+//weatherType = sunny, cloudy, windy, snowy, rainy, default 
+const rainOrShine = (typeOfWeather) => {
+  let weatherType = DefaultIcon;
+
+  switch (typeOfWeather) {
+      case 'Clouds':
+          weatherType = CloudIcon;
+          break;
+      case 'Clear':
+          weatherType = ClearIcon;
+          break;
+      case 'Rain':
+          weatherType = RainnyIcon;
+          break;
+      case 'Snow':
+          weatherType = SnowIcon;
+          break;
+      case 'Wind':
+          weatherType = WindyIcon;
+          break;
+      default:
+          break;
+  }
+  return weatherType;
+}
+
   return (
       <div>
-        <div className="align-center justify-center">
+        <div className="align-center justify-center mb-5">
           <h1>Welcome to Travel!</h1>
         </div>
         
         <div className="flex-column">
-        <div className="flex-row justify-space-between">
+        <div className="flex-row justify-space-between mb-5">
         
         <div className="flex-row">
             <div className="mr-2" >
@@ -33,7 +64,8 @@ const handleSearchOnClick = () => {
                 <button className="btn btn-info" type='submit' onClick={handleSearchOnClick}>Search</button>
             </div>
         </div>
-        
+        </div>
+        <div>
         {weatherData && (
           <div className="flex-column">
             <div className="justify-center">
@@ -43,7 +75,7 @@ const handleSearchOnClick = () => {
           {weatherData.forcast.map((forcast) => (
           <div class="card bg-primary m-2">
             <h3 class="card-title text-light p-2">{forcast.day}</h3>
-            <img src={CloudIcon} alt="weather icon" style={{height: '40px', width: '40px'}} />
+            <img src={rainOrShine(forcast.type)} alt="weather icon" style={{height: '40px', width: '40px'}} />
             <div class="card-body">
                 <p class="card-text text-light">Temp: {forcast.temperature} &deg; F</p>
                 <p class="card-text text-light">Wind: {forcast.wind} MPH</p>
@@ -55,7 +87,7 @@ const handleSearchOnClick = () => {
         </div>
           )}
           </div>
-        <div className="align-center">
+        <div className="align-center mt-5">
           <img src={UnderConstructionIcon} alt="under construction icon" style={{height: '300px', width: '300px'}} />
         </div>
         </div>
